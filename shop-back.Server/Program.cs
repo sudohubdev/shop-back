@@ -24,7 +24,7 @@ else{
     _ = DiscoverService.StartDiscover();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
