@@ -1,0 +1,3 @@
+[submodule "shop-front"]
+	path = shop-front
+	url = https://github.com/sudohubdev/shop-front.git

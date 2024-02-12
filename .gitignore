@@ -1,0 +1,17 @@
+# Logs
+logs
+*.log
+
+#code
+obj
+bin
+dist
+# Editor directories and files
+.vs
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
