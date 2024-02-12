@@ -6,6 +6,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
     <RootNamespace>shop_back.Server</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(LaunchArgs)' == 'noreact'">
+    <!-- Configuration for running only .NET -->
+    <!--dont use spa, only api launch-->
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(LaunchArgs)' != 'noreact'">
     <SpaRoot>..\shop-front</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
@@ -19,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\shop-front\shop-front.esproj">
+    <ProjectReference Include="..\shop-front\shop-front.esproj" Condition="'$(LaunchArgs)' != 'noreact'">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

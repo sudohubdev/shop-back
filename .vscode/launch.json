@@ -1,0 +1,46 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [ 
+        {
+            "name": ".NET + React",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-back",
+            "program": "${workspaceFolder}/shop-back.Server/bin/Debug/net8.0/shop-back.Server.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/shop-back.Server",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            //use launchSettings.json
+            "launchSettingsProfile": "https",
+            "launchSettingsFilePath": "${workspaceFolder}/shop-back.Server/Properties/launchSettings.json"  
+        },
+        {
+            "name": ".NET ONLY",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-noreact",
+            "program": "${workspaceFolder}/shop-back.Server/bin/Debug/net8.0/shop-back.Server.dll",
+            "args": [
+                "/p:LaunchArgs=noreact",
+            ],
+            "cwd": "${workspaceFolder}/shop-back.Server",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            //use launchSettings.json
+            "launchSettingsProfile": "http",
+            "launchSettingsFilePath": "${workspaceFolder}/shop-back.Server/Properties/launchSettings.json",
+            //open swagger.html
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s/swagger/index.html"
+            }
+        },
+        
+
+    ]
+}

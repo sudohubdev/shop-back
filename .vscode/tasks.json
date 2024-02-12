@@ -1,0 +1,25 @@
+{
+    "tasks": [
+        {
+            "label": "build-back",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/shop-back.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-noreact",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "/p:LaunchArgs=noreact",
+                "${workspaceFolder}/shop-back.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+    ]
+}
