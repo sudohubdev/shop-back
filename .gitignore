@@ -13,5 +13,6 @@ dist
 *.suo
 *.ntvs*
 *.njsproj
-*.sln
 *.sw?
+.postgres_data
+.secret
