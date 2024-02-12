@@ -12,7 +12,6 @@ services:
     networks:
       - default
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:4433;http://+:8080
       - ASPNETCORE_Kestrel__Certificates__Default__Password=denis_555
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/sudohub.pfx
