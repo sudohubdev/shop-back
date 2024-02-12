@@ -16,7 +16,13 @@
             "console": "internalConsole",
             //use launchSettings.json
             "launchSettingsProfile": "https",
-            "launchSettingsFilePath": "${workspaceFolder}/shop-back.Server/Properties/launchSettings.json"  
+            "launchSettingsFilePath": "${workspaceFolder}/shop-back.Server/Properties/launchSettings.json",
+            //open react
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s"
+            }
         },
         {
             "name": ".NET ONLY",
