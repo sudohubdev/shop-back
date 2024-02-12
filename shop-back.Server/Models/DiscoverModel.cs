@@ -9,7 +9,7 @@ namespace MvcProxy.Models
         public bool Online { get; set; } = true;
         //required specifically for direct forwarding
         public string? Ip { get; set; } = "docker";
-        public int Port { get; set; } = 8080;
+        public int Port { get; set; } = 8008;
         public string Path { get; set; } = "";
         public bool Direct { get; set; } = true;
         public bool Secure { get; set; } = false;

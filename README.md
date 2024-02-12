@@ -5,6 +5,7 @@
 Сервер має фронтенд, через який кидаються запити. Для повної і коректної ініціалізації проєкту потрібно установити репозиторій таким чином:
 ```bash
 git clone https://github.com/sudohubdev/shop-back.git
+cd shop-back
 git submodule init
 git submodule update
 ```

@@ -7,12 +7,12 @@ services:
       context: .
       dockerfile: shop-back.Server/Dockerfile
     ports:
-      - 8080:8080
+      - 8008:8008
       - 4433:4433
     networks:
       - default
     environment:
-      - ASPNETCORE_URLS=https://+:4433;http://+:8080
+      - ASPNETCORE_URLS=https://+:4433;http://+:8008
       - ASPNETCORE_Kestrel__Certificates__Default__Password=denis_555
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/sudohub.pfx
     volumes:
