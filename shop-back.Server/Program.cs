@@ -1,7 +1,9 @@
+using shop_back.Server.Data;
 using shop_back.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+InitDB.Init(builder);
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -10,6 +12,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+//init the database
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<MainContext>();
+    context.Database.EnsureCreated();
+    //context.Database.Migrate();
+}
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

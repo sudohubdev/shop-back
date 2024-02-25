@@ -16,3 +16,9 @@ dist
 *.sw?
 .postgres_data
 .secret
+# data
+*.csv
+*.db
+*.sqlite
+*.db-shm
+*.db-wal
