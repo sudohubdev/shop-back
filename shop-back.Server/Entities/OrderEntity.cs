@@ -16,6 +16,7 @@ namespace shop_back.Server.Entities
 {
     public class OrderEntity : BaseEntity
     {
+        [JsonIgnore]
         public ProductEntity Product { get; set; }
         public int Quantity { get; set; }
         public decimal PriceOrdered { get; set; }

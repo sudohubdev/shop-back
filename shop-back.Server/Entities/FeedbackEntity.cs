@@ -16,8 +16,10 @@ namespace shop_back.Server.Entities
     public class FeedbackEntity : BaseEntity
     {
         public int UserId { get; set; }
+        [JsonIgnore]
         public IdentityUser User { get; set; } = null!;
         public int ProductId { get; set; }
+        [JsonIgnore]
         public ProductEntity Product { get; set; }
         public string Text { get; set; }
         public int Rating { get; set; }

@@ -20,6 +20,7 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<MainContext>();
     context.Database.EnsureCreated();
     //context.Database.Migrate();
+    GenerateMockData.Init(context);
 }
 
 app.UseDefaultFiles();
