@@ -54,7 +54,7 @@ public static class GenerateMockData
         {
             Product = product,
             Text = "TestFeedback",
-            UserId = 1,
+            UserId = "1",
             Rating = 5,
             ProductId = product.Id
         };
@@ -97,7 +97,7 @@ public static class GenerateMockData
         {
             Product = product2,
             Text = "TestFeedback2",
-            UserId = 1
+            UserId = "1"
         };
         context.Feedbacks.Add(feedback2);
         context.SaveChanges();

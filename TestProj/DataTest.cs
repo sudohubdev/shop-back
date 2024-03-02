@@ -73,7 +73,7 @@ public class DataTest
         {
             Product = product,
             Text = "TestFeedback",
-            UserId = 1
+            UserId = "1"
         };
         mainContext!.Feedbacks.Add(feedback);
         await mainContext!.SaveChangesAsync();

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using shop_back.Server.Models;
 using System.Text.Json.Serialization;
 
 
@@ -12,7 +13,7 @@ namespace shop_back.Server.Entities
 {
     public class FeedbackEntity : BaseEntity
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         [JsonIgnore]
         public IdentityUser User { get; set; } = null!;
         public int ProductId { get; set; }
@@ -24,6 +25,14 @@ namespace shop_back.Server.Entities
 
 #pragma warning disable CS8618 // Required by Entity Framework
         public FeedbackEntity() { }
+
+        public FeedbackEntity(FeedbackModel feedbackData, ProductEntity product, string userId)
+        {
+            UserId = userId;
+            ProductId = product.Id;
+            Text = feedbackData.Text;
+            Rating = feedbackData.Rating;
+        }
 #pragma warning restore CS8618 // Required by Entity Framework
 
     }

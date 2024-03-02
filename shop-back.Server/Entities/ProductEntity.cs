@@ -13,7 +13,7 @@ id товару
 isHit це типу чи цей товар є бесцелером
  категорія
 к-сть товару
-наявність товару                                                                    
+наявність товару
 */
 namespace shop_back.Server.Entities
 {
@@ -32,9 +32,9 @@ namespace shop_back.Server.Entities
         public bool IsAvailable { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public int? Score
+        public double? Score
         {
-            get => Feedbacks?.Count > 0 ? (int)Feedbacks.Average(f => f.Rating) : 0;
+            get => Feedbacks?.Count > 0 ? Feedbacks.Average(f => f.Rating) : 0;
             private set {/*required by EF*/}
         }
 

@@ -109,5 +109,45 @@ namespace shop_back.Server.Controllers
             }
             return _context.Orders.Where(o => o.UserId == userId).ToArray();
         }
+
+        //create comment
+        [HttpPost("feedback", Name = "CreateFeedback")]
+        public async Task<IActionResult> CreateFeedback([FromBody] FeedbackModel feedbackData)
+        {
+            if (User?.Identity?.Name == null)
+            {
+                return BadRequest(new { Error = "Invalid session" });
+            }
+            var user = await _user.FindByNameAsync(User.Identity.Name);
+            if (user == null)
+            {
+                return BadRequest(new { Error = "Invalid session" });
+            }
+            var userId = await _user.GetUserIdAsync(user);
+            if (userId == null)
+            {
+                return BadRequest(new { Error = "User not found" });
+            }
+
+            var product = await _context.Products.FindAsync(feedbackData.ProductId);
+            if (product == null)
+            {
+                return BadRequest(new { Error = "Product not found" });
+            }
+            if (feedbackData.Rating < 1 || feedbackData.Rating > 5)
+            {
+                return BadRequest(new { Error = "Invalid rating" });
+            }
+            //check if user already left feedback
+            if (_context.Feedbacks.Any(f => f.ProductId == feedbackData.ProductId && f.UserId == userId))
+            {
+                return BadRequest(new { Error = "Feedback already exists" });
+            }
+            //fill feedback data
+            var feedback = new FeedbackEntity(feedbackData, product, userId);
+            await _context.Feedbacks.AddAsync(feedback);
+            await _context.SaveChangesAsync();
+            return Ok(new { Success = true });
+        }
     }
 }
