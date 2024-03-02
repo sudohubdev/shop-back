@@ -1,7 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 
 /*
@@ -29,10 +26,17 @@ namespace shop_back.Server.Entities
         public IList<FeedbackEntity> Feedbacks { get; set; }
         public decimal Price { get; set; }
         public decimal Discount { get; set; } = 0;
-        public bool IsHit { get; set ; }
+        public bool IsHit { get; set; }
         public string Category { get; set; }
         public int Quantity { get; set; }
         public bool IsAvailable { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public int? Score
+        {
+            get => Feedbacks?.Count > 0 ? (int)Feedbacks.Average(f => f.Rating) : 0;
+            private set {/*required by EF*/}
+        }
 
 
 #pragma warning disable CS8618 // Required by Entity Framework

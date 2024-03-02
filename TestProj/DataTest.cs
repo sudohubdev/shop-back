@@ -1,14 +1,9 @@
 //create a product for admin user with a feedback and order
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using shop_back.Server.Data;
 using shop_back.Server.Entities;
 using shop_back.Server.Services;

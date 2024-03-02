@@ -1,7 +1,4 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 
@@ -9,7 +6,7 @@ using System.Text.Json.Serialization;
 id відгука
 id користувача
 текст відгуку
-рейтинг відгуку                                                                  
+рейтинг відгуку
 */
 namespace shop_back.Server.Entities
 {
@@ -23,7 +20,7 @@ namespace shop_back.Server.Entities
         public ProductEntity Product { get; set; }
         public string Text { get; set; }
         public int Rating { get; set; }
-        
+
 
 #pragma warning disable CS8618 // Required by Entity Framework
         public FeedbackEntity() { }

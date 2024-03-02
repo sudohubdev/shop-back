@@ -1,8 +1,5 @@
 //call http request to https://sudohub.dev/api/discover
-using System.Buffers.Text;
-using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MvcProxy.Models;
 
@@ -11,13 +8,15 @@ namespace shop_back.Server.Services
     public static class DiscoverService
     {
         private static string APIKEYPATH = "/https/apikey";
-        private static string APIKEY {
-            get {
+        private static string APIKEY
+        {
+            get
+            {
                 if (System.Diagnostics.Debugger.IsAttached)
                 {
-                    throw new System.Exception("SudoHub discover isn't available in development mode");
+                    throw new Exception("SudoHub discover isn't available in development mode");
                 }
-                string key = System.IO.File.ReadAllText(APIKEYPATH);
+                string key = File.ReadAllText(APIKEYPATH);
                 return Convert.ToBase64String(Encoding.UTF8.GetBytes(key));
             }
         }
@@ -44,10 +43,13 @@ namespace shop_back.Server.Services
         {
             while (true)
             {
-                try{
+                try
+                {
                     await GetDiscover();
                     await Task.Delay(10000);
-                }catch(Exception e){
+                }
+                catch (Exception e)
+                {
                     Console.WriteLine(e);
                 }
             }

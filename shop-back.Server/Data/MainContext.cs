@@ -1,13 +1,9 @@
-using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using  shop_back.Server.Entities;
+using shop_back.Server.Entities;
 
-namespace  shop_back.Server.Data;
+namespace shop_back.Server.Data;
 
 public class MainContext : IdentityDbContext<IdentityUser>
 {

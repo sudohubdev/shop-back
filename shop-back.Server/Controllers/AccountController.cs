@@ -1,8 +1,5 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-
-using shop_back.Server.Data;
 using shop_back.Server.Models;
 
 namespace shop_back.Server.Controllers;
@@ -26,17 +23,17 @@ public class AccountController : ControllerBase
     {
         if (ModelState.IsValid)
         {
-            var user = new IdentityUser 
-            { 
-                UserName = model.UserName, 
-                Email = model.Email, 
+            var user = new IdentityUser
+            {
+                UserName = model.UserName,
+                Email = model.Email,
                 PhoneNumber = model.Phone
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                return Ok();
+                return Ok(new { Success = true });
             }
             else
             {
@@ -47,6 +44,22 @@ public class AccountController : ControllerBase
         return BadRequest(errors);
     }
 
+#if DEBUG
+    [HttpGet]
+    [Route("loginDev")]
+    public async Task<IActionResult> LoginDev()
+    {
+        var user = await _userManager.FindByEmailAsync("dev@dev.com");
+        if (user == null)
+        {
+            user = new IdentityUser { UserName = "admin", Email = "dev@dev.com" };
+            await _userManager.CreateAsync(user, "P@ssw0rd");
+        }
+        await _signInManager.SignInAsync(user, isPersistent: false);
+        return Ok(new { Success = true });
+    }
+#endif
+
     [HttpPost]
     [Route("login")]
     public async Task<IActionResult> Login([FromBody] LoginModel model)
@@ -56,7 +69,7 @@ public class AccountController : ControllerBase
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
             if (result.Succeeded)
             {
-                return Ok();
+                return Ok(new { Success = true });
             }
             else
             {
@@ -67,12 +80,17 @@ public class AccountController : ControllerBase
         return BadRequest(errors);
     }
 
-    [HttpPost]  
-    [Route("[controller]/logout")]
+    [HttpPost]
+    [Route("logout")]
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
-        return Ok();
+        return Ok(new { Success = true });
     }
+
+    [HttpGet]
+    [Route("checkUser")]
+    public IActionResult CheckUser() =>
+        Ok(new { Online = User.Identity?.IsAuthenticated ?? false });
 
 }

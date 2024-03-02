@@ -5,7 +5,6 @@
 // 1 product with feedback and order
 // 1 prodcut without anything
 
-using Microsoft.EntityFrameworkCore;
 using shop_back.Server.Data;
 using shop_back.Server.Entities;
 
@@ -16,7 +15,7 @@ public static class GenerateMockData
     public static void Init(MainContext context)
     {
         //delete database
-        context.Database.EnsureDeleted();
+        //context.Database.EnsureDeleted();
 
         context.Database.EnsureCreated();
         if (context.Users.Any())
@@ -55,7 +54,9 @@ public static class GenerateMockData
         {
             Product = product,
             Text = "TestFeedback",
-            UserId = 1
+            UserId = 1,
+            Rating = 5,
+            ProductId = product.Id
         };
         context.Feedbacks.Add(feedback);
         context.SaveChanges();
@@ -65,8 +66,14 @@ public static class GenerateMockData
             Product = product,
             Quantity = 1,
             PriceOrdered = 100,
-            DateOrdered = DateTime.Now.ToString(),
-            UserId = 1
+            DateOrdered = DateTime.Now,
+            UserId = "1",
+            LegalName = "Alice",
+            PhoneNumber = "+1 234 567 890",
+            City = "Kyiv",
+            PostOffice = "1",
+            DeliveryMethod = "Nova Poshta",
+            PaymentMethod = "Cash"
         };
         context.Orders.Add(order);
         context.SaveChanges();
@@ -100,8 +107,14 @@ public static class GenerateMockData
             Product = product2,
             Quantity = 1,
             PriceOrdered = 100,
-            DateOrdered = DateTime.Now.ToString(),
-            UserId = 1
+            DateOrdered = DateTime.Now,
+            UserId = "1",
+            LegalName = "Alice",
+            PhoneNumber = "+1 234 567 890",
+            City = "Kyiv",
+            PostOffice = "1",
+            DeliveryMethod = "Nova Poshta",
+            PaymentMethod = "Cash"
         };
         context.Orders.Add(order2);
         context.SaveChanges();
