@@ -73,7 +73,7 @@ public class AccountController : ControllerBase
             }
             else
             {
-                return BadRequest("Invalid login.");
+                return BadRequest(new { Error = "Invalid login." });
             }
         }
         var errors = ModelState.Values.SelectMany(v => v.Errors);
