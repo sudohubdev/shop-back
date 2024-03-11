@@ -17,3 +17,4 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/sudohub.pfx
     volumes:
       - .secret:/https:ro
+      - .db:/db:rw
