@@ -1,24 +1,25 @@
 #See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
+
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 #install node
-RUN apt-get update
-RUN apt-get install -y curl
-RUN apt-get install -y libpng-dev libjpeg-dev curl libxi6 build-essential libgl1-mesa-glx
-RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
-RUN apt-get install -y nodejs
+
+FROM node:latest as node_base
+RUN echo "Node.js version:" && node -v
+RUN echo "NPM version:" && npm -v
+
 USER app
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-RUN apt-get update
-RUN apt-get install -y curl
-RUN apt-get install -y libpng-dev libjpeg-dev curl libxi6 build-essential libgl1-mesa-glx
-RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
-RUN apt-get install -y nodejs
+
+#make nodejs available
+COPY --from=node_base . .
+
+
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["shop-front/nuget.config", "shop-front/"]
