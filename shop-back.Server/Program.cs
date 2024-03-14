@@ -100,6 +100,7 @@ else
 }
 
 //app.UseHttpsRedirection();
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -16,15 +16,17 @@ namespace MvcProxy.Models
         public bool Important { get; set; } = true;
 
         //misc functions
+#pragma warning disable IDE1006 // Naming Styles
         public Uri getReverseURL()
         {
-            string url = this.Secure ? "https://" : "http://";
-            url += this.Ip + ":" + this.Port + "/" + this.Path;
+            string url = Secure ? "https://" : "http://";
+            url += Ip + ":" + Port + "/" + Path;
             return new Uri(url);
         }
         public Uri getLinkURL()
         {
-            return new Uri((this.Secure ? "https://" : "http://") + this.Url);
+            return new Uri((Secure ? "https://" : "http://") + Url);
         }
+#pragma warning restore IDE1006 // Naming Styles
     }
 }
