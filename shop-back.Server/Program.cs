@@ -16,6 +16,15 @@ if (builder.Environment.IsDevelopment())
             builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
     });
 }
+else
+{
+    //allow origin *.sudohub.dev
+    builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(
+            builder => builder.WithOrigins("https://*.sudohub.dev").AllowAnyMethod().AllowAnyHeader());
+    });
+}
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
