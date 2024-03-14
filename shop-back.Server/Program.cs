@@ -22,7 +22,12 @@ else
     builder.Services.AddCors(options =>
     {
         options.AddDefaultPolicy(
-            builder => builder.WithOrigins("https://*.sudohub.dev").AllowAnyMethod().AllowAnyHeader());
+            builder => builder.WithOrigins([
+                "https://sudohub.dev",
+                "https://shop.sudohub.dev",
+                "https://test.sudohub.dev",
+                "https://test.sudohub.dev:4433",
+                ]).AllowAnyMethod().AllowAnyHeader());
     });
 }
 
