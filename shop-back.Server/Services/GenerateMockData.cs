@@ -60,13 +60,23 @@ public static class GenerateMockData
 
     public static void MakeProduct(MainContext ctx, bool inclOrder = false, bool inclFeedback = false){
         string[] names = {"MacBook", "iPhone", "iPad", "iMac", "Apple Watch", "AirPods", "HomePod", "Apple TV"};
+        string[] characteristicsKeys = {"Екран", "Пам'ять", "Процесор", "Камера", "Акумулятор", "Дизайн", "Звук", "Ціна"};
         string[] categories = {"Laptops", "Smartphones", "Tablets", "Desktops", "Watches", "Headphones", "Speakers", "TVs"};
-        string[] images = {"macbook.jpg", "iphone.jpg", "ipad.jpg", "imac.jpg", "applewatch.jpg", "airpods.jpg", "homepod.jpg", "appletv.jpg"};
-        string[] characteristics = {"Retina display", "Touch ID", "Face ID", "Apple M1 chip", "Always-on Retina display", "Active Noise Cancellation", "Spatial audio", "Dolby Atmos"};
+        string[] images = {"https://www.apple.com/v/macbook-air/s/images/overview/keyboard/magic_keyboard__cs7rk0m14pkm_large_2x.jpg",
+        "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-family-hero",
+        "https://www.apple.com/v/ipad-pro/am/images/overview/hero/hero_combo__fcqcc3hbzjyy_large_2x.jpg",
+        "https://www.apple.com/v/mac-studio/f/images/overview/hero/static_front__fmvxob6uyxiu_large_2x.jpg",
+        "https://www.apple.com/v/watch/bk/images/overview/series-9/tile_s9_avail__c104b8nuoec2_small_2x.jpg",
+        "http://apple.com/v/airpods-2nd-generation/f/images/overview/fall22c/engraving__ualb7ydsu1uq_small_2x.png",
+        "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/homepod-select-202210?wid=1080&hei=1080&fmt=jpeg",
+        "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/apple-tv-4k-hero-select-202210?wid=1076&hei=1070&fmt=jpeg"};
+
+
+        string[] characteristics = {"Retina display", "Touch ID", "Face ID", "Apple M1 chip", "Always-on Retina display", "Active Noise Cancellation", "Spatial audio", "Dolby Atmos", "HomeKit", "Apple Music", "Touch Bar", "macOS", "iOS", "iPadOS", "watchOS", "tvOS"};
         var product = new ProductEntity
         {
             Name = names[Random.Shared.Next(0, names.Length)],
-            Characteristics = new List<string> { characteristics[Random.Shared.Next(0, characteristics.Length)] },
+            Characteristics = Enumerable.Range(0, Random.Shared.Next(1, 10)).Select(_ => characteristicsKeys[Random.Shared.Next(0, characteristicsKeys.Length)] + ": " + characteristics[Random.Shared.Next(0, characteristics.Length)]).ToList(),
             Category = categories[Random.Shared.Next(0, categories.Length)],
             Discount = Random.Shared.Next(0, 100),
             Images = new List<string> { images[Random.Shared.Next(0, images.Length)] },

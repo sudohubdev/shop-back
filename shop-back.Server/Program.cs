@@ -50,6 +50,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.User.AllowedUserNameCharacters =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     options.User.RequireUniqueEmail = true;
+
 });
 
 builder.Services.ConfigureApplicationCookie(options =>
@@ -95,6 +96,8 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
+    app.UseSwagger();
+    app.UseSwaggerUI();
     _ = DiscoverService.StartDiscover();
     app.UseExceptionHandler("/error");
 }

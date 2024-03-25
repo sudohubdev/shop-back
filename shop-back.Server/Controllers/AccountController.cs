@@ -66,7 +66,13 @@ public class AccountController : ControllerBase
     {
         if (ModelState.IsValid)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+            Console.WriteLine(model.Email);
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                return BadRequest(new { Error = "Invalid login." });
+            }
+            var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
             if (result.Succeeded)
             {
                 return Ok(new { Success = true });

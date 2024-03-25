@@ -23,6 +23,22 @@ namespace shop_back.Server.Entities
         public IList<string> Images { get; set; }
         //public int Rating { get; set; } to relation with feedback
         public IList<string> Characteristics { get; set; }
+        [NotMapped]
+        public IList<KeyValuePair<string, string>> CharacteristicsPairs
+        {
+            get
+            {
+                //split Characteristics by :
+                var pairs = new List<KeyValuePair<string, string>>();
+                foreach (var characteristic in Characteristics)
+                {
+                    var pair = characteristic.Split(':');
+                    pairs.Add(new KeyValuePair<string, string>(pair[0], pair[1]));
+                }
+                return pairs;
+            }
+            private set {/*required by EF*/}
+        }
         public IList<FeedbackEntity> Feedbacks { get; set; }
         public decimal Price { get; set; }
         public decimal Discount { get; set; } = 0;
