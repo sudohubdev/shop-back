@@ -36,7 +36,7 @@ namespace shop_back.Server.Controllers
         {
             //use fuzzysharp to search, order by score and take top 10
             var products = await _context.Products.Include(p => p.Feedbacks).ToArrayAsync();
-            return products.OrderByDescending(p => FuzzySharp.Fuzz.PartialRatio(p.Name, q)).Take(count);
+            return products.OrderByDescending(p => FuzzySharp.Fuzz.WeightedRatio(p.Name, q)).Take(count);
         }
 
         //get products of type, order by score
