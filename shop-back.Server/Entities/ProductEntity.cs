@@ -33,7 +33,7 @@ namespace shop_back.Server.Entities
                 foreach (var characteristic in Characteristics)
                 {
                     var pair = characteristic.Split(':');
-                    pairs.Add(new KeyValuePair<string, string>(pair[0], pair[1]));
+                    pairs.Add(new KeyValuePair<string, string>(pair[0], pair[1].Trim()));
                 }
                 return pairs;
             }
