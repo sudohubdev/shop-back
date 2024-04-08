@@ -97,6 +97,11 @@ public class AccountController : ControllerBase
     [HttpGet]
     [Route("checkUser")]
     public IActionResult CheckUser() =>
-        Ok(new { Online = User.Identity?.IsAuthenticated ?? false });
+        Ok(new
+        {
+            Online = User.Identity?.IsAuthenticated ?? false,
+            Name = User.Identity?.Name,
+            Email = User.Claims.FirstOrDefault(c => c.Type == "Email")?.Value
+        });
 
 }

@@ -25,10 +25,11 @@ namespace shop_back.Server.Controllers
             _user = user;
         }
 
+        [AllowAnonymous]
         [HttpGet(Name = "GetProducts")]
         public IEnumerable<ProductEntity> Get([FromQuery] int index = 0, [FromQuery] int count = 10)
         {
-            return _context.Products.Include(p => p.Feedbacks).Skip(index).Take(count).ToArray();
+            return _context.Products.Include(p => p.Feedbacks).ThenInclude(f=>f.User).Skip(index).Take(count).ToArray();
         }
         //search
         [HttpGet("search", Name = "SearchProducts")]
