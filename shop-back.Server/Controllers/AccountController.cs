@@ -96,12 +96,15 @@ public class AccountController : ControllerBase
 
     [HttpGet]
     [Route("checkUser")]
-    public IActionResult CheckUser() =>
-        Ok(new
+    public IActionResult CheckUser()
+    {
+        var userFromDB = _userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+        return Ok(new
         {
             Online = User.Identity?.IsAuthenticated ?? false,
             Name = User.Identity?.Name,
-            Email = User.Claims.FirstOrDefault(c => c.Type == "Email")?.Value
+            Email = userFromDB?.Email,
+            Phone = userFromDB?.PhoneNumber
         });
-
+    }
 }

@@ -111,6 +111,13 @@ namespace shop_back.Server.Controllers
             return _context.Orders.Where(o => o.UserId == userId).ToArray();
         }
 
+        //get feedbacks of product
+        [HttpGet("/feedbacks/{id}", Name = "GetFeedbacks")]
+        public async Task<IEnumerable<FeedbackEntity>> GetFeedbacks(int id)
+        {
+            return await _context.Feedbacks.Where(f => f.ProductId == id).Include(f => f.User).ToArrayAsync();
+        }
+
         //create comment
         [HttpPost("feedback", Name = "CreateFeedback")]
         public async Task<IActionResult> CreateFeedback([FromBody] FeedbackModel feedbackData)

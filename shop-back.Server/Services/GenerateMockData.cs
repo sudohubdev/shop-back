@@ -16,7 +16,7 @@ public static class GenerateMockData
     public static void Init(MainContext context)
     {
         //delete database
-        context.Database.EnsureDeleted();
+        //context.Database.EnsureDeleted();
 
         context.Database.EnsureCreated();
         if (context.Users.Any())
