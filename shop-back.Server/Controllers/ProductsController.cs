@@ -27,7 +27,7 @@ namespace shop_back.Server.Controllers
 
         [AllowAnonymous]
         [HttpGet(Name = "GetProducts")]
-        public IEnumerable<ProductEntity> Get([FromQuery] int index = 0, [FromQuery] int count = 10)
+        public IEnumerable<ProductEntity> Get([FromQuery] int index = 0, [FromQuery] int count = 100)
         {
             return _context.Products.Include(p => p.Feedbacks).ThenInclude(f=>f.User).Skip(index).Take(count).ToArray();
         }
