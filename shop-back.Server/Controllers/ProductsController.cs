@@ -10,7 +10,7 @@ namespace shop_back.Server.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("Productss")]
     public class ProductsController : ControllerBase
     {
 
