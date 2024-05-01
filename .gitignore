@@ -22,3 +22,4 @@ dist
 *.sqlite
 *.db-shm
 *.db-wal
+*.ipynb
